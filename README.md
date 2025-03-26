@@ -11,7 +11,7 @@ Ensure you have the following installed:
 
 ### **📂 Clone the Repository & Navigate to Project**
 ```sh
-git clone https://github.com/backbenchers2point0/AIEnabled-Integrated-Platform-Environment.git
+git clone https://github.com/ewfx/gaipl-ai-explorers.git
 ```
 
 ### **📦 Create & Activate Virtual Environment**
