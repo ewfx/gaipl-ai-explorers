@@ -1,60 +1,105 @@
-# 🚀 Project Name
+# **Local Setup & Runbook**
 
-## 📌 Table of Contents
-- [Introduction](#introduction)
-- [Demo](#demo)
-- [Inspiration](#inspiration)
-- [What It Does](#what-it-does)
-- [How We Built It](#how-we-built-it)
-- [Challenges We Faced](#challenges-we-faced)
-- [How to Run](#how-to-run)
-- [Tech Stack](#tech-stack)
-- [Team](#team)
+## **1️⃣ Local Setup Instructions**
+
+### **📌 Prerequisites**
+Ensure you have the following installed:
+- **Python 3.12+** → [Download Python](https://www.python.org/downloads/) < 3.13
+- **pip** (comes with Python)
+- **Virtual Environment (venv)**
+- **Postman** (for API testing, optional)
+
+### **📂 Clone the Repository & Navigate to Project**
+```sh
+git clone https://github.com/backbenchers2point0/AIEnabled-Integrated-Platform-Environment.git
+```
+
+### **📦 Create & Activate Virtual Environment**
+```sh
+conda create -p venv python==3.12.0 -y
+conda activate {absolutePath}/venv
+venv\Scripts\activate    # On Windows
+```
+
+### **📥 Install Dependencies**
+```sh
+pip install -r requirements.txt
+```
+
+### **📥 Train Data**
+```sh
+python src/classifier/microservice-classifier/train_and_save.p
+```
+
+### **🔧 Configure Environment Variables**
+Create a `.env` file inside the project root and add required configurations:
+```ini
+# Example .env file
+MONGO_URI=mongodb://localhost:27017/
+OPENAI_API_KEY=your_openai_key
+TELEMETRY_API=http://localhost:5000/telemetry
+```
+
+### **🚀 Running the Application**
+```sh
+python src/run.py
+```
+
+### **📌 Running in Docker (If Required)**
+```sh
+docker build -t my-app .
+docker run -p 5000:5000 my-app
+```
+
+### **🔍 Testing API Endpoints**
+Using **Postman** or `curl`:
+```sh
+curl -X GET http://localhost:5001/api/health
+```
+
+### **🔍 Setting up Jenkins in local**
+1. Download Jenkins from [here](https://www.jenkins.io/download/)
+2. Download Apache Tomcat from [here](https://tomcat.apache.org/download-90.cgi)
+3. Place the Jenkins war file in the webapps folder of Tomcat and start the server
+
+catalina.sh start
+---
+
+### **🔍 Setting up MailHog in local**
+
+brew install mailhog
+
+To start the server run below command
+mailhog
 
 ---
 
-## 🎯 Introduction
-A brief overview of your project and its purpose. Mention which problem statement are your attempting to solve. Keep it concise and engaging.
+## **2️⃣ Runbook: Operating & Troubleshooting**
 
-## 🎥 Demo
-🔗 [Live Demo](#) (if applicable)  
-📹 [Video Demo](#) (if applicable)  
-🖼️ Screenshots:
+### **🟢 Starting the Application**
+1. Activate the virtual environment: `source venv/bin/activate`
+2. Run the application: `python src/run.py`
+3. Verify it’s running: `curl http://localhost:5001/api/health`
 
-![Screenshot 1](link-to-image)
+### **🛑 Stopping the Application**
+1. Press `CTRL+C` if running in terminal
 
-## 💡 Inspiration
-What inspired you to create this project? Describe the problem you're solving.
+### **📊 Monitoring Logs**
+```sh
+tail -f logs/app.log
+```
 
-## ⚙️ What It Does
-Explain the key features and functionalities of your project.
+### **🚨 Troubleshooting**
+| Issue | Solution |
+|--------|----------|
+| `ModuleNotFoundError` | Run `pip install -r requirements.txt` |
+| `.env not found` | Create `.env` file as per example above |
+| `Address already in use` | Kill process using `lsof -i :5000` and restart |
 
-## 🛠️ How We Built It
-Briefly outline the technologies, frameworks, and tools used in development.
+---
 
-## 🚧 Challenges We Faced
-Describe the major technical or non-technical challenges your team encountered.
+## **✅ Conclusion**
+Following these steps ensures a smooth local setup and troubleshooting. For any persistent issues, check logs (`logs/app.log`) or restart the environment.
 
-## 🏃 How to Run
-1. Clone the repository  
-   ```sh
-   git clone https://github.com/your-repo.git
-   ```
-2. Install dependencies  
-   ```sh
-   npm install  # or pip install -r requirements.txt (for Python)
-   ```
-3. Run the project  
-   ```sh
-   npm start  # or python app.py
-   ```
+📌 **For more details, refer to the `docs/` directory!**
 
-## 🏗️ Tech Stack
-- 🔹 Frontend: React / Vue / Angular
-- 🔹 Backend: Node.js / FastAPI / Django
-- 🔹 Database: PostgreSQL / Firebase
-- 🔹 Other: OpenAI API / Twilio / Stripe
-
-## 👥 Team
-- **Your Name** - [GitHub](#) | [LinkedIn](#)
-- **Teammate 2** - [GitHub](#) | [LinkedIn](#)
